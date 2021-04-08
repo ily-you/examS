@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+ {% block stylesheets %}
+        <link rel="stylesheet"  href="{{ asset('style/style.css')}} " />
+  {% endblock %}
+
+{% block body %}
+
+<h1>Projet : {{ project.name }}</h1>
+<h2>Créer le : {{ project.startedAt|date('Y-m-d') }} </h2>
+        <form action="" method="post">
+        <select name="status" id="day">
+            {% if project.status == "Nouveau" %}
+                <option value="Nouveau">{{ project.status }}</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminé">Terminé</option>
+            {% elseif project.status == "En cours" %}
+                <option value="En cours">{{ project.status }}</option>
+                <option value="Nouveau">Nouveau</option>
+                <option value="Terminé">Terminé</option>
+            {% else %}
+                <option value="Terminé">Terminé</option>
+                <option value="Nouveau">Nouveau</option>
+                <option value="En cours">En cours</option>
+            {% endif %}
+        </select>
+        <button type="submit">Changer</button>
+        </form>
+   <a href="{{ path('add_task', {id: project.id})}}">Ajouter une tache</a> 
+{% for task in project.tasks %}
+    <h3> Nom de la tâche :  {{ task.title}}</h3>
+    <h3> Description de la tâche : {{ task.description}}</h3>
+    <h3> date de création de la tâche : {{ task.createdAt|date('Y-m-d')}}</h3>
+{% endfor %}
+
+{% endblock %}

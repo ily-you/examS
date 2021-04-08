@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+ {% block stylesheets %}
+        <link rel="stylesheet"  href="{{ asset('style/style.css')}} " />
+  {% endblock %}
+{% block body %}
+<h1>Ajouter un projet</h1>
+    <form action="{{ path('add_task', {id: project.id})}}" method="post">
+        <h2>Titre</h2> <br> 
+<input type="text" name="title">
+    <h2>Description</h2> <br> 
+     <textarea id="story" name="description" rows="5" cols="33">
+</textarea><br>
+
+    <button type="submit">Créer la tâche</button>
+    </form>
+{% endblock %}
